@@ -1,21 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhinav | Developer Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+header {
+  padding: 22px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #11182b;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  color: #38bdf8;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin: 15px;
+}
+
+.hero h1 span {
+  color: #38bdf8;
+}
+
+.hero p {
+  color: #bdc7dc;
+  font-size: 19px;
+  margin: 12px;
+}
+
+.btn {
+  display: inline-block;
+  background: #38bdf8;
+  color: #07111f;
+  padding: 13px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+section {
+  padding: 65px 10%;
+  text-align: center;
+}
+
+h2 {
+  color: #38bdf8;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #151e33;
+  padding: 25px;
+  border-radius: 15px;
+  margin: 15px auto;
+  max-width: 650px;
+  border: 1px solid #273651;
+}
+
+.card p {
+  color: #bdc7dc;
+  line-height: 1.8;
+}
+
+.skills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.skill {
+  background: #151e33;
+  padding: 15px 25px;
+  border-radius: 10px;
+  color: #38bdf8;
+}
+
+footer {
+  background: #11182b;
+  text-align: center;
+  padding: 25px;
+  color: #bdc7dc;
+}
+
+@media(max-width:600px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+  nav a {
+    margin-left: 8px;
+    font-size: 13px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Welcome to My Website!</h1>
+<header>
+  <div class="logo">Abhinav.</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <h2>My Name is Abhinav</h2>
+<div class="hero" id="home">
+  <p>Hello, Welcome to my website!</p>
+  <h1>I'm <span>Abhinav</span></h1>
+  <p>Future Web Developer | Creative Learner</p>
+  <a href="#about" class="btn">Explore My Website</a>
+</div>
 
-    <p>I am learning Web Development.</p>
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      Hi! My name is Abhinav.
+      I am learning Web Development.
+      I love technology, creativity and building websites.
+      My dream is to become a professional Web Developer.
+    </p>
+  </div>
+</section>
 
-    <p>My goal is to become a Web Developer.</p>
+<section id="skills">
+  <h2>My Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript (Learning)</div>
+    <div class="skill">Web Design</div>
+  </div>
+</section>
 
-    <button>Click Here</button>
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="card">
+    <h3>My First Website</h3>
+    <p>This is my first personal website built using HTML and CSS.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <div class="card">
+    <p>Thanks for visiting my website!</p>
+    <p>Let's connect and create something amazing.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Abhinav | Made with ❤️</p>
+</footer>
 
 </body>
 </html>
