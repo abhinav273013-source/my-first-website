@@ -261,6 +261,278 @@ function calculate() {
   }
 }
 </script>
+  <style>
+.calculator {
+  max-width: 350px;
+  margin: auto;
+  padding: 25px;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px #0004;
+}
+
+#display {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 15px;
+  font-size: 28px;
+  text-align: right;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-buttons button {
+  padding: 18px 5px;
+  font-size: 20px;
+  border-radius: 12px;
+  transition: .2s;
+}
+
+.calc-buttons button:hover {
+  transform: scale(1.07);
+  filter: brightness(1.15);
+}
+
+.calc-buttons .operator {
+  background: #f59e0b;
+}
+
+.calc-buttons .clear {
+  background: #ef4444;
+  color: white;
+}
+
+.calc-buttons .equal {
+  background: #22c55e;
+}
+</style>
+
+<section id="calculator">
+  <h2>My Calculator 🧮</h2>
+
+  <div class="calculator">
+    <input id="display" type="text"
+      placeholder="0" readonly>
+
+    <div class="calc-buttons">
+      <button class="clear" onclick="clearCalc()">C</button>
+      <button class="operator" onclick="deleteCalc()">DEL</button>
+      <button class="operator" onclick="addCalc('%')">%</button>
+      <button class="operator" onclick="addCalc('/')">÷</button>
+
+      <button onclick="addCalc('7')">7</button>
+      <button onclick="addCalc('8')">8</button>
+      <button onclick="addCalc('9')">9</button>
+      <button class="operator" onclick="addCalc('*')">×</button>
+
+      <button onclick="addCalc('4')">4</button>
+      <button onclick="addCalc('5')">5</button>
+      <button onclick="addCalc('6')">6</button>
+      <button class="operator" onclick="addCalc('-')">−</button>
+
+      <button onclick="addCalc('1')">1</button>
+      <button onclick="addCalc('2')">2</button>
+      <button onclick="addCalc('3')">3</button>
+      <button class="operator" onclick="addCalc('+')">+</button>
+
+      <button onclick="addCalc('0')">0</button>
+      <button onclick="addCalc('.')">.</button>
+      <button class="equal" style="grid-column:span 2"
+        onclick="calculate()">=</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function addCalc(value) {
+  document.getElementById("display").value += value;
+}
+
+function clearCalc() {
+  document.getElementById("display").value = "";
+}
+
+function deleteCalc() {
+  let display = document.getElementById("display");
+  display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+  let display = document.getElementById("display");
+  let expression = display.value;
+
+  if (!/^[0-9+\-*/%.() ]+$/.test(expression)) {
+    display.value = "Error";
+    return;
+  }
+
+  try {
+    let result = Function(
+      '"use strict"; return (' + expression + ')'
+    )();
+
+    display.value = Number.isFinite(result)
+      ? String(Number(result.toPrecision(12)))
+      : "Error";
+  } catch {
+    display.value = "Error";
+  }
+}
+</script>
+  <style>
+.todo-box {
+  max-width: 500px;
+  margin: auto;
+  padding: 25px;
+  background: var(--card);
+  border-radius: 18px;
+}
+
+.todo-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.todo-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#taskList {
+  list-style: none;
+}
+
+#taskList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  padding: 13px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+#taskList li span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+#taskList li.done span {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  padding: 8px 12px;
+}
+</style>
+
+<section id="todo">
+  <h2>My Daily To-Do List 📝</h2>
+
+  <div class="todo-box">
+    <div class="todo-input">
+      <input id="taskInput" type="text"
+        placeholder="Enter your task...">
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+    <p id="taskCount">0 tasks remaining</p>
+  </div>
+</section>
+
+<script>
+let tasks = JSON.parse(localStorage.getItem("myTasks") || "[]");
+
+function saveTasks() {
+  localStorage.setItem("myTasks", JSON.stringify(tasks));
+  showTasks();
+}
+
+function addTask() {
+  let input = document.getElementById("taskInput");
+  let value = input.value.trim();
+
+  if (value === "") {
+    alert("Please enter a task!");
+    return;
+  }
+
+  tasks.push({
+    text: value,
+    done: false
+  });
+
+  input.value = "";
+  saveTasks();
+}
+
+function toggleTask(index) {
+  tasks[index].done = !tasks[index].done;
+  saveTasks();
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasks();
+}
+
+function showTasks() {
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    let li = document.createElement("li");
+    if (task.done) li.classList.add("done");
+
+    let check = document.createElement("input");
+    check.type = "checkbox";
+    check.checked = task.done;
+    check.onchange = () => toggleTask(index);
+
+    let span = document.createElement("span");
+    span.textContent = task.text;
+
+    let del = document.createElement("button");
+    del.textContent = "Delete";
+    del.className = "delete-btn";
+    del.onclick = () => deleteTask(index);
+
+    li.append(check, span, del);
+    list.appendChild(li);
+  });
+
+  let remaining = tasks.filter(t => !t.done).length;
+  document.getElementById("taskCount").textContent =
+    remaining + " tasks remaining";
+}
+
+showTasks();
+
+document.getElementById("taskInput").addEventListener(
+  "keydown",
+  function(event) {
+    if (event.key === "Enter") addTask();
+  }
+);
+</script>
 </style>
 </head>
 
