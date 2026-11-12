@@ -5,7 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abhinav | Portfolio</title>
 
-<style>
+/* Login and Signup Design */
+
+.auth-container {
+    max-width: 430px;
+    margin: 20px auto;
+}
+
+.auth-container h2 {
+    text-align: center;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.auth-tabs button {
+    flex: 1;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form input {
+    margin: 10px 0;
+}
+
+.password-box {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.password-box input {
+    flex: 1;
+}
+
+.auth-message {
+    margin-top: 12px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.dashboard {
+    display: none;
+    text-align: center;
+}
+
+.dashboard.active {
+    display: block;
+}
+
+.dashboard h3 {
+    color: #38bdf8;
+    margin-bottom: 12px;
+}
+    <style>
 * {
     margin: 0;
     padding: 0;
