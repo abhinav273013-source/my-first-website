@@ -815,7 +815,70 @@ function showDashboard() {
     document.getElementById("welcomeUser").textContent =
         "Hello, " + user.name + "!";
 }
+<section id="account">
+    <div class="auth-container">
+        <h2>My Account 🔐</h2>
 
+        <div class="card" id="authBox">
+
+            <div class="auth-tabs">
+                <button onclick="showAuth('login')">Login</button>
+                <button onclick="showAuth('signup')">Sign Up</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active">
+                <h3>Welcome Back!</h3>
+
+                <input type="email" id="loginEmail"
+                placeholder="Enter Email" required>
+
+                <div class="password-box">
+                    <input type="password" id="loginPassword"
+                    placeholder="Enter Password" required>
+
+                    <button type="button"
+                    onclick="togglePassword('loginPassword')">
+                    Show
+                    </button>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <form id="signupForm" class="auth-form">
+                <h3>Create Your Account</h3>
+
+                <input type="text" id="signupName"
+                placeholder="Full Name" required>
+
+                <input type="email" id="signupEmail"
+                placeholder="Email Address" required>
+
+                <div class="password-box">
+                    <input type="password" id="signupPassword"
+                    placeholder="Create Password"
+                    minlength="6" required>
+
+                    <button type="button"
+                    onclick="togglePassword('signupPassword')">
+                    Show
+                    </button>
+                </div>
+
+                <button type="submit">Create Account</button>
+            </form>
+
+            <p class="auth-message" id="authMessage"></p>
+        </div>
+
+        <div class="card dashboard" id="dashboard">
+            <h3>Welcome to Your Dashboard! 🎉</h3>
+            <p id="welcomeUser"></p>
+            <p>You are successfully logged in.</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+</section>
 function logout() {
     sessionStorage.removeItem("abhinavLoggedIn");
     document.getElementById("authBox").style.display = "block";
