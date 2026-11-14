@@ -677,6 +677,91 @@ window.addEventListener("scroll", function() {
 function goTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
+// Login and Signup System
+
+function showAuth(type) {
+    document.getElementById("loginForm").classList.toggle("active", type === "login");
+    document.getElementById("signupForm").classList.toggle("active", type === "signup");
+    document.getElementById("authMessage").textContent = "";
+}
+
+function togglePassword(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+function getUsers() {
+    return JSON.parse(localStorage.getItem("abhinavUsers") || "[]");
+}
+
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim().toLowerCase();
+    const password = document.getElementById("signupPassword").value;
+    const message = document.getElementById("authMessage");
+
+    const users = getUsers();
+
+    if (users.some(user => user.email === email)) {
+        message.textContent = "This email is already registered!";
+        return;
+    }
+
+    users.push({ name, email, password });
+    localStorage.setItem("abhinavUsers", JSON.stringify(users));
+
+    message.textContent = "Account created! Please login.";
+    document.getElementById("signupForm").reset();
+    showAuth("login");
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+    const password = document.getElementById("loginPassword").value;
+    const users = getUsers();
+
+    const user = users.find(
+        item => item.email === email && item.password === password
+    );
+
+    if (!user) {
+        document.getElementById("authMessage").textContent =
+            "Incorrect email or password!";
+        return;
+    }
+
+    sessionStorage.setItem("abhinavLoggedIn", JSON.stringify({
+        name: user.name,
+        email: user.email
+    }));
+
+    showDashboard();
+});
+
+function showDashboard() {
+    const user = JSON.parse(sessionStorage.getItem("abhinavLoggedIn"));
+
+    if (!user) return;
+
+    document.getElementById("authBox").style.display = "none";
+    document.getElementById("dashboard").classList.add("active");
+    document.getElementById("welcomeUser").textContent =
+        "Hello, " + user.name + "!";
+}
+
+function logout() {
+    sessionStorage.removeItem("abhinavLoggedIn");
+    document.getElementById("authBox").style.display = "block";
+    document.getElementById("dashboard").classList.remove("active");
+    document.getElementById("loginForm").reset();
+    showAuth("login");
+}
+
+showDashboard();
 </script>
 
 </body>
