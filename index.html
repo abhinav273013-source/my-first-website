@@ -3,41 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abhinav | Portfolio</title>
+<title>Abhinav Portfolio</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#0f172a;color:#f8fafc;line-height:1.6;transition:.3s}
-body.light{background:#f1f5f9;color:#172033}
+body{font-family:Arial,sans-serif;background:#0f172a;color:white;line-height:1.6}
+button{cursor:pointer;border:0;border-radius:7px;padding:12px 18px;background:#38bdf8;color:#082f49;font-weight:bold}
+input{width:100%;padding:13px;margin:8px 0;border:1px solid #64748b;border-radius:7px;font-size:16px}
+.hidden{display:none!important}
+
+/* LOGIN */
+#authPage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#0f172a,#164e63)}
+.auth-card{width:100%;max-width:400px;background:#1e293b;padding:30px;border-radius:15px;box-shadow:0 10px 35px #0006}
+.auth-card h1{text-align:center;color:#38bdf8;margin-bottom:8px}
+.auth-card p{text-align:center;color:#cbd5e1;margin-bottom:20px}
+.auth-card button{width:100%;margin-top:10px}
+.auth-card .switch{text-align:center;margin-top:20px}
+.switch a{color:#38bdf8;cursor:pointer}
+.error{color:#f87171;text-align:center;margin-top:10px}
+.success{color:#4ade80;text-align:center;margin-top:10px}
+.password-box{position:relative}
+.password-box input{padding-right:75px}
+.show-pass{position:absolute;right:8px;top:15px;padding:7px;background:#334155;color:white}
+
+/* DASHBOARD */
 header{background:#1e293b;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
-.light header,.light footer{background:white}
-.logo{font-size:25px;font-weight:bold;color:#38bdf8}
+.logo{font-size:24px;font-weight:bold;color:#38bdf8}
 nav{display:flex;gap:13px;flex-wrap:wrap}
-nav a{color:inherit;text-decoration:none;font-size:14px}
+nav a{color:white;text-decoration:none;font-size:14px}
 nav a:hover{color:#38bdf8}
-button{background:#38bdf8;color:#082f49;border:0;padding:11px 16px;border-radius:7px;font-weight:bold;cursor:pointer}
-button:hover{opacity:.85}
-section{padding:65px 8%}
-.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#0f172a,#164e63)}
-.light .hero{background:linear-gradient(120deg,#dbeafe,#bae6fd)}
-.hero h1{font-size:clamp(36px,7vw,60px)}
-.hero h1 span{color:#38bdf8}
-.hero p{margin:15px 0 25px;font-size:18px}
-h2{color:#38bdf8;margin-bottom:20px;font-size:30px}
+section{padding:55px 8%}
+.hero{min-height:65vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#0f172a,#164e63)}
+.hero h1{font-size:clamp(35px,7vw,58px)}
+.hero span{color:#38bdf8}
+.hero p{margin:15px 0}
+h2{color:#38bdf8;margin-bottom:18px;font-size:28px}
 .card{background:#1e293b;padding:22px;border-radius:12px;margin-top:15px;box-shadow:0 5px 18px #0002}
-.light .card{background:white}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px}
 .item{text-align:center;padding:25px}
-input{width:100%;padding:12px;margin:8px 0;border-radius:7px;border:1px solid #94a3b8;font-size:16px}
 .calculator{max-width:350px}
 .display{background:#020617;color:white;padding:18px;text-align:right;font-size:25px;border-radius:8px;min-height:60px;overflow-wrap:anywhere}
 .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-.keys button{font-size:18px;padding:15px 5px}
+.keys button{padding:15px 5px;font-size:18px}
 .todo-row{display:flex;gap:8px}
 .todo-row input{flex:1;min-width:0}
 #tasks{list-style:none;margin-top:12px}
 #tasks li{display:flex;align-items:center;gap:10px;padding:10px;margin:8px 0;background:#334155;border-radius:7px}
-.light #tasks li{background:#e2e8f0}
 #tasks li span{flex:1;overflow-wrap:anywhere}
 #tasks li input{width:auto}
 .done{text-decoration:line-through;opacity:.6}
@@ -47,12 +58,59 @@ footer{text-align:center;background:#1e293b;padding:25px}
 @media(max-width:600px){
 header{justify-content:center}
 nav{justify-content:center}
-section{padding:45px 6%}
+section{padding:40px 6%}
 }
 </style>
 </head>
 
 <body>
+
+<!-- LOGIN AND SIGNUP PAGE -->
+<div id="authPage">
+<div class="auth-card">
+
+<h1>Abhinav.</h1>
+<p id="authSubtitle">Login to access your portfolio</p>
+
+<div id="loginForm">
+<h2>Welcome Back!</h2>
+
+<input id="loginEmail" type="email" placeholder="Email address">
+
+<div class="password-box">
+<input id="loginPassword" type="password" placeholder="Password">
+<button class="show-pass" type="button" onclick="togglePassword('loginPassword')">Show</button>
+</div>
+
+<button onclick="login()">Login</button>
+
+<p class="switch">Don't have an account?
+<a onclick="showSignup()">Sign Up</a></p>
+</div>
+
+<div id="signupForm" class="hidden">
+<h2>Create Account</h2>
+
+<input id="signupName" type="text" placeholder="Your full name">
+<input id="signupEmail" type="email" placeholder="Email address">
+
+<div class="password-box">
+<input id="signupPassword" type="password" placeholder="Create password">
+<button class="show-pass" type="button" onclick="togglePassword('signupPassword')">Show</button>
+</div>
+
+<button onclick="signup()">Create Account</button>
+
+<p class="switch">Already have an account?
+<a onclick="showLogin()">Login</a></p>
+</div>
+
+<div id="authMessage"></div>
+</div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="mainApp" class="hidden">
 
 <header>
 <div class="logo">Abhinav.</div>
@@ -65,21 +123,21 @@ section{padding:45px 6%}
 <a href="#todo">To-Do</a>
 <a href="#weather">Weather</a>
 </nav>
-<button onclick="toggleTheme()">🌙 Theme</button>
+<button onclick="logout()">Logout</button>
 </header>
 
 <section class="hero" id="home">
-<h1>Hello, I'm <span>Abhinav</span></h1>
-<h2>Welcome to My Website</h2>
+<h1>Hello, <span id="welcomeName">Abhinav</span>!</h1>
+<h2>Welcome to Your Dashboard</h2>
 <p>Student | Learner | Future Developer</p>
-<a href="#about"><button>Explore My Website</button></a>
+<a href="#about"><button>Explore Website</button></a>
 </section>
 
 <section id="about">
 <h2>About Me</h2>
 <div class="card">
 <p>Hello! My name is Abhinav.</p>
-<p>I am a student who loves learning new things and technology.</p>
+<p>I love learning new things and technology.</p>
 <p>My goal is to become a successful web developer.</p>
 <p>I believe in hard work and continuous improvement.</p>
 </div>
@@ -100,7 +158,7 @@ section{padding:45px 6%}
 <section id="projects">
 <h2>My Projects</h2>
 <div class="grid">
-<div class="card item"><h3>Portfolio</h3><p>My personal website</p></div>
+<div class="card item"><h3>Portfolio</h3><p>Personal website</p></div>
 <div class="card item"><h3>Calculator</h3><p>Working calculator</p></div>
 <div class="card item"><h3>To-Do List</h3><p>Manage daily tasks</p></div>
 <div class="card item"><h3>Weather App</h3><p>Live weather checker</p></div>
@@ -139,7 +197,7 @@ section{padding:45px 6%}
 <h2>To-Do List</h2>
 <div class="card">
 <div class="todo-row">
-<input id="taskInput" placeholder="Write your task...">
+<input id="taskInput" placeholder="Write your task">
 <button onclick="addTask()">Add</button>
 </div>
 <ul id="tasks"></ul>
@@ -149,7 +207,7 @@ section{padding:45px 6%}
 <section id="weather">
 <h2>Live Weather App</h2>
 <div class="card">
-<p>Enter your city name to check current weather.</p>
+<p>Enter your city name:</p>
 <input id="city" placeholder="Example: Lucknow">
 <button onclick="getWeather()">Check Weather</button>
 <div id="weatherResult"></div>
@@ -162,23 +220,112 @@ section{padding:45px 6%}
 </footer>
 
 <button id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
 
 <script>
-// Theme
-function toggleTheme(){
-document.body.classList.toggle("light");
-localStorage.setItem("portfolioTheme",document.body.classList.contains("light")?"light":"dark");
-}
-if(localStorage.getItem("portfolioTheme")==="light"){
-document.body.classList.add("light");
+// AUTHENTICATION DEMO
+function getUsers(){
+try{return JSON.parse(localStorage.getItem("demoUsers")||"[]")}
+catch{return []}
 }
 
-// Back to top
-window.addEventListener("scroll",()=>{
-document.getElementById("top").style.display=window.scrollY>300?"block":"none";
-});
+function showMessage(message,type="error"){
+const box=document.getElementById("authMessage");
+box.textContent=message;
+box.className=type;
+}
 
-// Calculator
+function showSignup(){
+document.getElementById("loginForm").classList.add("hidden");
+document.getElementById("signupForm").classList.remove("hidden");
+document.getElementById("authSubtitle").textContent="Create your account";
+showMessage("");
+}
+
+function showLogin(){
+document.getElementById("signupForm").classList.add("hidden");
+document.getElementById("loginForm").classList.remove("hidden");
+document.getElementById("authSubtitle").textContent="Login to access your portfolio";
+showMessage("");
+}
+
+function togglePassword(id){
+const field=document.getElementById(id);
+field.type=field.type==="password"?"text":"password";
+}
+
+function signup(){
+const name=document.getElementById("signupName").value.trim();
+const email=document.getElementById("signupEmail").value.trim().toLowerCase();
+const password=document.getElementById("signupPassword").value;
+
+if(!name||!email||!password){
+showMessage("Please fill in all fields.");
+return;
+}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+showMessage("Please enter a valid email.");
+return;
+}
+if(password.length<6){
+showMessage("Password must be at least 6 characters.");
+return;
+}
+
+const users=getUsers();
+if(users.some(user=>user.email===email)){
+showMessage("This email is already registered. Please login.");
+return;
+}
+
+users.push({name,email,password});
+localStorage.setItem("demoUsers",JSON.stringify(users));
+openDashboard({name,email});
+}
+
+function login(){
+const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+const password=document.getElementById("loginPassword").value;
+
+if(!email||!password){
+showMessage("Enter your email and password.");
+return;
+}
+
+const user=getUsers().find(user=>user.email===email&&user.password===password);
+if(!user){
+showMessage("Incorrect email or password. Please try again.");
+return;
+}
+openDashboard(user);
+}
+
+function openDashboard(user){
+localStorage.setItem("demoSession",JSON.stringify({name:user.name,email:user.email}));
+document.getElementById("authPage").classList.add("hidden");
+document.getElementById("mainApp").classList.remove("hidden");
+document.getElementById("welcomeName").textContent=user.name;
+window.scrollTo(0,0);
+}
+
+function logout(){
+localStorage.removeItem("demoSession");
+document.getElementById("mainApp").classList.add("hidden");
+document.getElementById("authPage").classList.remove("hidden");
+showLogin();
+}
+
+// Restore demo session on refresh
+try{
+const session=JSON.parse(localStorage.getItem("demoSession")||"null");
+if(session&&session.name){
+openDashboard(session);
+}
+}catch{
+localStorage.removeItem("demoSession");
+}
+
+// CALCULATOR
 let expression="";
 const display=document.getElementById("display");
 
@@ -196,9 +343,9 @@ display.textContent=expression||"0";
 }
 function calculate(){
 try{
-if(!/^[0-9+\-*/%.() ]+$/.test(expression)) throw Error();
+if(!/^[0-9+\-*/%.() ]+$/.test(expression))throw Error();
 const answer=Function('"use strict";return ('+expression+')')();
-if(!Number.isFinite(answer)) throw Error();
+if(!Number.isFinite(answer))throw Error();
 expression=String(answer);
 display.textContent=expression;
 }catch{
@@ -207,7 +354,7 @@ display.textContent="Error";
 }
 }
 
-// To-Do List
+// TO-DO LIST
 let tasks=JSON.parse(localStorage.getItem("myTasks")||"[]");
 
 function saveTasks(){
@@ -228,7 +375,7 @@ showTasks();
 };
 const span=document.createElement("span");
 span.textContent=task.text;
-if(task.done) span.className="done";
+if(task.done)span.className="done";
 const del=document.createElement("button");
 del.textContent="Delete";
 del.onclick=()=>{
@@ -237,7 +384,7 @@ saveTasks();
 showTasks();
 };
 li.append(check,span,del);
-list.appendChild(li);
+list.append(li);
 });
 }
 function addTask(){
@@ -250,56 +397,61 @@ saveTasks();
 showTasks();
 }
 document.getElementById("taskInput").addEventListener("keydown",e=>{
-if(e.key==="Enter") addTask();
+if(e.key==="Enter")addTask();
 });
 showTasks();
 
-// Weather App
+// WEATHER APP
 async function getWeather(){
 const city=document.getElementById("city").value.trim();
 const output=document.getElementById("weatherResult");
 if(!city){output.textContent="Please enter a city name.";return;}
 output.textContent="Loading...";
+
 try{
 const geo=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(city)+"&count=1&language=en&format=json");
-if(!geo.ok) throw Error();
+if(!geo.ok)throw Error();
 const location=await geo.json();
 if(!location.results||!location.results.length){
-output.textContent="City not found. Try another name.";
+output.textContent="City not found.";
 return;
 }
 const place=location.results[0];
 const url="https://api.open-meteo.com/v1/forecast?latitude="+place.latitude+"&longitude="+place.longitude+"&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m";
 const response=await fetch(url);
-if(!response.ok) throw Error();
+if(!response.ok)throw Error();
 const data=await response.json();
 const w=data.current;
-const codes={
-0:"Clear Sky",1:"Mainly Clear",2:"Partly Cloudy",3:"Overcast",
-45:"Foggy",48:"Foggy",51:"Drizzle",61:"Rain",63:"Moderate Rain",
-65:"Heavy Rain",71:"Snow",80:"Rain Showers",95:"Thunderstorm"
-};
+const codes={0:"Clear Sky",1:"Mainly Clear",2:"Partly Cloudy",3:"Overcast",45:"Foggy",48:"Foggy",51:"Drizzle",61:"Rain",63:"Moderate Rain",65:"Heavy Rain",71:"Snow",80:"Rain Showers",95:"Thunderstorm"};
+
 output.textContent="";
 const title=document.createElement("h3");
 title.textContent=place.name+", "+(place.country||"");
-output.appendChild(title);
+output.append(title);
+
 [
-"🌡️ Temperature: "+w.temperature_2m+"°C",
-"🤗 Feels Like: "+w.apparent_temperature+"°C",
-"☁️ Weather: "+(codes[w.weather_code]||"Unknown"),
-"💧 Humidity: "+w.relative_humidity_2m+"%",
-"💨 Wind Speed: "+w.wind_speed_10m+" km/h"
+"Temperature: "+w.temperature_2m+"°C",
+"Feels Like: "+w.apparent_temperature+"°C",
+"Weather: "+(codes[w.weather_code]||"Unknown"),
+"Humidity: "+w.relative_humidity_2m+"%",
+"Wind Speed: "+w.wind_speed_10m+" km/h"
 ].forEach(line=>{
 const p=document.createElement("p");
 p.textContent=line;
-output.appendChild(p);
+output.append(p);
 });
-}catch(error){
-output.textContent="Weather could not load. Check your internet and try again.";
+}catch{
+output.textContent="Weather could not load. Check your internet.";
 }
 }
+
 document.getElementById("city").addEventListener("keydown",e=>{
-if(e.key==="Enter") getWeather();
+if(e.key==="Enter")getWeather();
+});
+
+// BACK TO TOP
+window.addEventListener("scroll",()=>{
+document.getElementById("top").style.display=window.scrollY>300?"block":"none";
 });
 </script>
 
