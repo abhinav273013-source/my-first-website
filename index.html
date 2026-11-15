@@ -4,371 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abhinav | Portfolio</title>
+
 <style>
-/* Login and Signup Design */
-
-.auth-container {
-    max-width: 430px;
-    margin: 20px auto;
-}
-
-.auth-container h2 {
-    text-align: center;
-}
-
-.auth-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.auth-tabs button {
-    flex: 1;
-}
-
-.auth-form {
-    display: none;
-}
-
-.auth-form.active {
-    display: block;
-}
-
-.auth-form input {
-    margin: 10px 0;
-}
-
-.password-box {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.password-box input {
-    flex: 1;
-}
-
-.auth-message {
-    margin-top: 12px;
-    font-weight: bold;
-    overflow-wrap: anywhere;
-}
-
-.dashboard {
-    display: none;
-    text-align: center;
-}
-
-.dashboard.active {
-    display: block;
-}
-
-.dashboard h3 {
-    color: #38bdf8;
-    margin-bottom: 12px;
-}
-    <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #101827;
-    color: white;
-    line-height: 1.6;
-    transition: 0.3s;
-}
-
-body.light {
-    background: #f1f5f9;
-    color: #172033;
-}
-
-header {
-    background: #172033;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.light header {
-    background: white;
-}
-
-.logo {
-    color: #38bdf8;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-nav {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-}
-
-.light nav a {
-    color: #172033;
-}
-
-nav a:hover {
-    color: #38bdf8;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 7px;
-    padding: 11px 16px;
-    background: #38bdf8;
-    color: #07111f;
-    font-weight: bold;
-}
-
-button:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
-}
-
-section {
-    padding: 65px 8%;
-}
-
-.hero {
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    background: linear-gradient(120deg, #101827, #164e63);
-}
-
-.light .hero {
-    background: linear-gradient(120deg, #e0f2fe, #bae6fd);
-}
-
-.hero h1 {
-    font-size: clamp(35px, 7vw, 60px);
-}
-
-.hero h1 span {
-    color: #38bdf8;
-}
-
-.hero p {
-    margin: 15px 0 25px;
-    font-size: 18px;
-}
-
-h2 {
-    color: #38bdf8;
-    margin-bottom: 20px;
-    font-size: 30px;
-}
-
-.card {
-    background: #1e293b;
-    padding: 22px;
-    border-radius: 12px;
-    margin-top: 15px;
-    box-shadow: 0 5px 18px #0003;
-}
-
-.light .card {
-    background: white;
-}
-
-.skills, .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-.skill, .project {
-    text-align: center;
-    padding: 25px;
-}
-
-.calculator {
-    max-width: 350px;
-}
-
-.calc-display {
-    background: #0b1220;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: right;
-    font-size: 25px;
-    min-height: 65px;
-    overflow-wrap: anywhere;
-}
-
-.calc-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.calc-buttons button {
-    font-size: 18px;
-    padding: 15px 5px;
-}
-
-input {
-    padding: 12px;
-    border-radius: 7px;
-    border: 1px solid #94a3b8;
-    width: 100%;
-    margin: 8px 0;
-    font-size: 16px;
-}
-
-.output {
-    margin-top: 15px;
-    font-weight: bold;
-    overflow-wrap: anywhere;
-}
-
-.todo-row {
-    display: flex;
-    gap: 8px;
-}
-
-.todo-row input {
-    flex: 1;
-}
-
-#taskList {
-    list-style: none;
-    margin-top: 15px;
-}
-
-#taskList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    background: #334155;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 7px;
-}
-
-.light #taskList li {
-    background: #e2e8f0;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-<section id="account">
-    <div class="auth-container">
-        <h2>My Account 🔐</h2>
-
-        <div class="card" id="authBox">
-            <div class="auth-tabs">
-                <button onclick="showAuth('login')">Login</button>
-                <button onclick="showAuth('signup')">Sign Up</button>
-            </div>
-
-            <form id="loginForm" class="auth-form active">
-                <h3>Welcome Back!</h3>
-
-                <input type="email" id="loginEmail"
-                placeholder="Enter Email" required>
-
-                <div class="password-box">
-                    <input type="password" id="loginPassword"
-                    placeholder="Enter Password" required>
-                    <button type="button"
-                    onclick="togglePassword('loginPassword')">Show</button>
-                </div>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <form id="signupForm" class="auth-form">
-                <h3>Create Your Account</h3>
-
-                <input type="text" id="signupName"
-                placeholder="Full Name" required>
-
-                <input type="email" id="signupEmail"
-                placeholder="Email Address" required>
-
-                <div class="password-box">
-                    <input type="password" id="signupPassword"
-                    placeholder="Create Password" minlength="6" required>
-                    <button type="button"
-                    onclick="togglePassword('signupPassword')">Show</button>
-                </div>
-
-                <button type="submit">Create Account</button>
-            </form>
-
-            <p class="auth-message" id="authMessage"></p>
-        </div>
-
-        <div class="card dashboard" id="dashboard">
-            <h3>Welcome to Your Dashboard! 🎉</h3>
-            <p id="welcomeUser"></p>
-            <p>You are successfully logged in.</p>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </div>
-</section>
-footer {
-    text-align: center;
-    background: #172033;
-    padding: 25px;
-}
-
-.light footer {
-    background: white;
-}
-
-#topBtn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: none;
-    border-radius: 50%;
-}
-
-@media(max-width: 600px) {
-    header {
-        justify-content: center;
-    }
-
-    nav {
-        justify-content: center;
-    }
-
-    section {
-        padding: 45px 6%;
-    }
-
-    .todo-row {
-        flex-direction: column;
-    }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#0f172a;color:#f8fafc;line-height:1.6;transition:.3s}
+body.light{background:#f1f5f9;color:#172033}
+header{background:#1e293b;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+.light header,.light footer{background:white}
+.logo{font-size:25px;font-weight:bold;color:#38bdf8}
+nav{display:flex;gap:13px;flex-wrap:wrap}
+nav a{color:inherit;text-decoration:none;font-size:14px}
+nav a:hover{color:#38bdf8}
+button{background:#38bdf8;color:#082f49;border:0;padding:11px 16px;border-radius:7px;font-weight:bold;cursor:pointer}
+button:hover{opacity:.85}
+section{padding:65px 8%}
+.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#0f172a,#164e63)}
+.light .hero{background:linear-gradient(120deg,#dbeafe,#bae6fd)}
+.hero h1{font-size:clamp(36px,7vw,60px)}
+.hero h1 span{color:#38bdf8}
+.hero p{margin:15px 0 25px;font-size:18px}
+h2{color:#38bdf8;margin-bottom:20px;font-size:30px}
+.card{background:#1e293b;padding:22px;border-radius:12px;margin-top:15px;box-shadow:0 5px 18px #0002}
+.light .card{background:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px}
+.item{text-align:center;padding:25px}
+input{width:100%;padding:12px;margin:8px 0;border-radius:7px;border:1px solid #94a3b8;font-size:16px}
+.calculator{max-width:350px}
+.display{background:#020617;color:white;padding:18px;text-align:right;font-size:25px;border-radius:8px;min-height:60px;overflow-wrap:anywhere}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.keys button{font-size:18px;padding:15px 5px}
+.todo-row{display:flex;gap:8px}
+.todo-row input{flex:1;min-width:0}
+#tasks{list-style:none;margin-top:12px}
+#tasks li{display:flex;align-items:center;gap:10px;padding:10px;margin:8px 0;background:#334155;border-radius:7px}
+.light #tasks li{background:#e2e8f0}
+#tasks li span{flex:1;overflow-wrap:anywhere}
+#tasks li input{width:auto}
+.done{text-decoration:line-through;opacity:.6}
+#weatherResult{margin-top:15px;line-height:2}
+footer{text-align:center;background:#1e293b;padding:25px}
+#top{position:fixed;bottom:20px;right:20px;border-radius:50%;display:none}
+@media(max-width:600px){
+header{justify-content:center}
+nav{justify-content:center}
+section{padding:45px 6%}
 }
 </style>
 </head>
@@ -376,518 +55,252 @@ footer {
 <body>
 
 <header>
-    <div class="logo">Abhinav.</div>
-
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#todo">To-Do</a>
-        <a href="#weather">Weather</a>
-    </nav>
-
-    <button onclick="toggleTheme()">🌙 Theme</button>
+<div class="logo">Abhinav.</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#calculator">Calculator</a>
+<a href="#todo">To-Do</a>
+<a href="#weather">Weather</a>
+</nav>
+<button onclick="toggleTheme()">🌙 Theme</button>
 </header>
 
 <section class="hero" id="home">
-    <h1>Hello, I'm <span>Abhinav</span></h1>
-    <h2>Welcome to My Website</h2>
-    <p>I am learning web development and improving my skills every day.</p>
-    <a href="#about"><button>Explore My Website</button></a>
+<h1>Hello, I'm <span>Abhinav</span></h1>
+<h2>Welcome to My Website</h2>
+<p>Student | Learner | Future Developer</p>
+<a href="#about"><button>Explore My Website</button></a>
 </section>
 
 <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-        <p>Hello! My name is Abhinav.</p>
-        <p>I am a student and I love learning new things.</p>
-        <p>My goal is to become a successful and skilled person.</p>
-        <p>I believe in hard work, consistency and a growth mindset.</p>
-    </div>
+<h2>About Me</h2>
+<div class="card">
+<p>Hello! My name is Abhinav.</p>
+<p>I am a student who loves learning new things and technology.</p>
+<p>My goal is to become a successful web developer.</p>
+<p>I believe in hard work and continuous improvement.</p>
+</div>
 </section>
 
 <section id="skills">
-    <h2>My Skills</h2>
-    <div class="skills">
-        <div class="card skill">🌐 HTML</div>
-        <div class="card skill">🎨 CSS</div>
-        <div class="card skill">💻 JavaScript</div>
-        <div class="card skill">🗣️ English Speaking</div>
-        <div class="card skill">🤝 Communication</div>
-        <div class="card skill">🧠 Growth Mindset</div>
-    </div>
+<h2>My Skills</h2>
+<div class="grid">
+<div class="card item">🌐 HTML</div>
+<div class="card item">🎨 CSS</div>
+<div class="card item">💻 JavaScript</div>
+<div class="card item">🗣️ Communication</div>
+<div class="card item">🧠 Growth Mindset</div>
+<div class="card item">🤝 Teamwork</div>
+</div>
 </section>
 
 <section id="projects">
-    <h2>My Projects</h2>
-    <div class="projects">
-        <div class="card project">
-            <h3>Personal Portfolio</h3>
-            <p>My personal website.</p>
-        </div>
-
-        <div class="card project">
-            <h3>Calculator</h3>
-            <p>A working calculator.</p>
-        </div>
-
-        <div class="card project">
-            <h3>To-Do List</h3>
-            <p>A task management app.</p>
-        </div>
-
-        <div class="card project">
-            <h3>Weather App</h3>
-            <p>A live weather checker.</p>
-        </div>
-    </div>
+<h2>My Projects</h2>
+<div class="grid">
+<div class="card item"><h3>Portfolio</h3><p>My personal website</p></div>
+<div class="card item"><h3>Calculator</h3><p>Working calculator</p></div>
+<div class="card item"><h3>To-Do List</h3><p>Manage daily tasks</p></div>
+<div class="card item"><h3>Weather App</h3><p>Live weather checker</p></div>
+</div>
 </section>
 
 <section id="calculator">
-    <h2>My Calculator</h2>
+<h2>Calculator</h2>
+<div class="card calculator">
+<div class="display" id="display">0</div>
+<div class="keys">
+<button onclick="clearCalc()">C</button>
+<button onclick="deleteCalc()">DEL</button>
+<button onclick="press('%')">%</button>
+<button onclick="press('/')">÷</button>
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button onclick="press('*')">×</button>
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button onclick="press('-')">−</button>
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button onclick="press('+')">+</button>
+<button onclick="press('0')">0</button>
+<button onclick="press('.')">.</button>
+<button onclick="calculate()" style="grid-column:span 2">=</button>
+</div>
+</div>
+</section>
 
-    <div class="card calculator">
-        <div class="calc-display" id="display">0</div>
-
-        <div class="calc-buttons">
-            <button onclick="clearCalc()">C</button>
-            <button onclick="deleteCalc()">DEL</button>
-            <button onclick="press('%')">%</button>
-            <button onclick="press('/')">÷</button>
-
-            <button onclick="press('7')">7</button>
-            <button onclick="press('8')">8</button>
-            <button onclick="press('9')">9</button>
-            <button onclick="press('*')">×</button>
-
-            <button onclick="press('4')">4</button>
-            <button onclick="press('5')">5</button>
-            <button onclick="press('6')">6</button>
-            <button onclick="press('-')">−</button>
-
-            <button onclick="press('1')">1</button>
-            <button onclick="press('2')">2</button>
-            <button onclick="press('3')">3</button>
-            <button onclick="press('+')">+</button>
-
-            <button onclick="press('0')">0</button>
-            <button onclick="press('.')">.</button>
-            <button onclick="calculate()">=</button>
-        </div>
-    </div>
-</section> <section id="todo">
-    <h2>My To-Do List</h2>
-    <div class="card">
-        <div class="todo-row">
-            <input type="text" id="taskInput" placeholder="Enter your task...">
-            <button onclick="addTask()">Add Task</button>
-        </div>
-        <ul id="taskList"></ul>
-    </div>
+<section id="todo">
+<h2>To-Do List</h2>
+<div class="card">
+<div class="todo-row">
+<input id="taskInput" placeholder="Write your task...">
+<button onclick="addTask()">Add</button>
+</div>
+<ul id="tasks"></ul>
+</div>
 </section>
 
 <section id="weather">
-    <h2>Live Weather App 🌤️</h2>
-    <div class="card">
-        <p>Enter a city name to check its weather.</p>
-        <input type="text" id="cityInput" placeholder="Example: Lucknow">
-        <button onclick="getWeather()">Check Weather</button>
-        <div class="output" id="weatherResult"></div>
-    </div>
+<h2>Live Weather App</h2>
+<div class="card">
+<p>Enter your city name to check current weather.</p>
+<input id="city" placeholder="Example: Lucknow">
+<button onclick="getWeather()">Check Weather</button>
+<div id="weatherResult"></div>
+</div>
 </section>
-<section id="account">
-    <div class="auth-container">
-        <h2>My Account 🔐</h2>
 
-        <div class="card" id="authBox">
-
-            <div class="auth-tabs">
-                <button onclick="showAuth('login')">Login</button>
-                <button onclick="showAuth('signup')">Sign Up</button>
-            </div>
-
-            <form id="loginForm" class="auth-form active">
-                <h3>Welcome Back!</h3>
-
-                <input type="email" id="loginEmail"
-                placeholder="Enter Email" required>
-
-                <div class="password-box">
-                    <input type="password" id="loginPassword"
-                    placeholder="Enter Password" required>
-
-                    <button type="button"
-                    onclick="togglePassword('loginPassword')">
-                    Show
-                    </button>
-                </div>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <form id="signupForm" class="auth-form">
-                <h3>Create Your Account</h3>
-
-                <input type="text" id="signupName"
-                placeholder="Full Name" required>
-
-                <input type="email" id="signupEmail"
-                placeholder="Email Address" required>
-
-                <div class="password-box">
-                    <input type="password" id="signupPassword"
-                    placeholder="Create Password"
-                    minlength="6" required>
-
-                    <button type="button"
-                    onclick="togglePassword('signupPassword')">
-                    Show
-                    </button>
-                </div>
-
-                <button type="submit">Create Account</button>
-            </form>
-
-            <p class="auth-message" id="authMessage"></p>
-        </div>
-
-        <div class="card dashboard" id="dashboard">
-            <h3>Welcome to Your Dashboard! 🎉</h3>
-            <p id="welcomeUser"></p>
-            <p>You are successfully logged in.</p>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </div>
-</section>
 <footer>
-    <p>© 2026 Abhinav | All Rights Reserved</p>
-    <p>Made with ❤️ by Abhinav</p>
+<p>© 2026 Abhinav | Made with ❤️</p>
+<p>Keep Learning, Keep Growing!</p>
 </footer>
 
-<button id="topBtn" onclick="goTop()">↑</button>
+<button id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-// Dark and Light Theme
-function toggleTheme() {
-    document.body.classList.toggle("light");
+// Theme
+function toggleTheme(){
+document.body.classList.toggle("light");
+localStorage.setItem("portfolioTheme",document.body.classList.contains("light")?"light":"dark");
 }
+if(localStorage.getItem("portfolioTheme")==="light"){
+document.body.classList.add("light");
+}
+
+// Back to top
+window.addEventListener("scroll",()=>{
+document.getElementById("top").style.display=window.scrollY>300?"block":"none";
+});
 
 // Calculator
-let expression = "";
+let expression="";
+const display=document.getElementById("display");
 
-function updateDisplay() {
-    document.getElementById("display").textContent =
-        expression || "0";
+function press(value){
+expression+=value;
+display.textContent=expression;
 }
-
-function press(value) {
-    if (expression.length < 40) {
-        expression += value;
-        updateDisplay();
-    }
+function clearCalc(){
+expression="";
+display.textContent="0";
 }
-
-function clearCalc() {
-    expression = "";
-    updateDisplay();
+function deleteCalc(){
+expression=expression.slice(0,-1);
+display.textContent=expression||"0";
 }
-
-function deleteCalc() {
-    expression = expression.slice(0, -1);
-    updateDisplay();
+function calculate(){
+try{
+if(!/^[0-9+\-*/%.() ]+$/.test(expression)) throw Error();
+const answer=Function('"use strict";return ('+expression+')')();
+if(!Number.isFinite(answer)) throw Error();
+expression=String(answer);
+display.textContent=expression;
+}catch{
+expression="";
+display.textContent="Error";
 }
-
-function calculate() {
-    try {
-        if (!/^[0-9+\-*/%.() ]+$/.test(expression)) {
-            throw new Error("Invalid");
-        }
-
-        let result = Function(
-            '"use strict"; return (' + expression + ')'
-        )();
-
-        if (!Number.isFinite(result)) {
-            throw new Error("Invalid");
-        }
-
-        expression = String(Number(result.toFixed(8)));
-        updateDisplay();
-
-    } catch (error) {
-        document.getElementById("display").textContent = "Error";
-        expression = "";
-    }
 }
 
 // To-Do List
-let tasks = JSON.parse(localStorage.getItem("abhinavTasks") || "[]");
+let tasks=JSON.parse(localStorage.getItem("myTasks")||"[]");
 
-function saveTasks() {
-    localStorage.setItem("abhinavTasks", JSON.stringify(tasks));
+function saveTasks(){
+localStorage.setItem("myTasks",JSON.stringify(tasks));
 }
-
-function showTasks() {
-    const list = document.getElementById("taskList");
-    list.innerHTML = "";
-
-    tasks.forEach((task, index) => {
-        const li = document.createElement("li");
-
-        const span = document.createElement("span");
-        span.textContent = task.text;
-        span.className = task.done ? "completed" : "";
-        span.style.cursor = "pointer";
-
-        span.onclick = () => {
-            tasks[index].done = !tasks[index].done;
-            saveTasks();
-            showTasks();
-        };
-
-        const del = document.createElement("button");
-        del.textContent = "Delete";
-        del.onclick = () => {
-            tasks.splice(index, 1);
-            saveTasks();
-            showTasks();
-        };
-
-        li.append(span, del);
-        list.appendChild(li);
-    });
+function showTasks(){
+const list=document.getElementById("tasks");
+list.innerHTML="";
+tasks.forEach((task,index)=>{
+const li=document.createElement("li");
+const check=document.createElement("input");
+check.type="checkbox";
+check.checked=task.done;
+check.onchange=()=>{
+tasks[index].done=check.checked;
+saveTasks();
+showTasks();
+};
+const span=document.createElement("span");
+span.textContent=task.text;
+if(task.done) span.className="done";
+const del=document.createElement("button");
+del.textContent="Delete";
+del.onclick=()=>{
+tasks.splice(index,1);
+saveTasks();
+showTasks();
+};
+li.append(check,span,del);
+list.appendChild(li);
+});
 }
-
-function addTask() {
-    const input = document.getElementById("taskInput");
-    const value = input.value.trim();
-
-    if (!value) {
-        alert("Please enter a task!");
-        return;
-    }
-
-    tasks.push({ text: value, done: false });
-    saveTasks();
-    showTasks();
-    input.value = "";
+function addTask(){
+const input=document.getElementById("taskInput");
+const value=input.value.trim();
+if(!value){alert("Please enter a task");return;}
+tasks.push({text:value,done:false});
+input.value="";
+saveTasks();
+showTasks();
 }
-
+document.getElementById("taskInput").addEventListener("keydown",e=>{
+if(e.key==="Enter") addTask();
+});
 showTasks();
 
-// Live Weather App
-async function getWeather() {
-    const city = document.getElementById("cityInput").value.trim();
-    const result = document.getElementById("weatherResult");
-
-    if (!city) {
-        result.textContent = "Please enter a city name.";
-        return;
-    }
-
-    result.textContent = "Loading weather...";
-
-    try {
-        const geoResponse = await fetch(
-            "https://geocoding-api.open-meteo.com/v1/search?name=" +
-            encodeURIComponent(city) + "&count=1&language=en&format=json"
-        );
-
-        if (!geoResponse.ok) throw new Error("Network error");
-
-        const geoData = await geoResponse.json();
-
-        if (!geoData.results || geoData.results.length === 0) {
-            result.textContent = "City not found. Try another name.";
-            return;
-        }
-
-        const place = geoData.results[0];
-
-        const weatherResponse = await fetch(
-            "https://api.open-meteo.com/v1/forecast?latitude=" +
-            place.latitude +
-            "&longitude=" + place.longitude +
-            "&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m"
-        );
-
-        if (!weatherResponse.ok) throw new Error("Weather unavailable");
-
-        const data = await weatherResponse.json();
-        const current = data.current;
-
-        result.innerHTML = `
-            <h3>📍 ${place.name}, ${place.country}</h3>
-            <p>🌡️ Temperature: ${current.temperature_2m}°C</p>
-            <p>🤗 Feels Like: ${current.apparent_temperature}°C</p>
-            <p>💧 Humidity: ${current.relative_humidity_2m}%</p>
-            <p>💨 Wind Speed: ${current.wind_speed_10m} km/h</p>
-        `;
-
-    } catch (error) {
-        result.textContent = "Weather could not be loaded. Please try again.";
-    }
+// Weather App
+async function getWeather(){
+const city=document.getElementById("city").value.trim();
+const output=document.getElementById("weatherResult");
+if(!city){output.textContent="Please enter a city name.";return;}
+output.textContent="Loading...";
+try{
+const geo=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(city)+"&count=1&language=en&format=json");
+if(!geo.ok) throw Error();
+const location=await geo.json();
+if(!location.results||!location.results.length){
+output.textContent="City not found. Try another name.";
+return;
 }
-
-// Back to Top
-window.addEventListener("scroll", function() {
-    document.getElementById("topBtn").style.display =
-        window.scrollY > 300 ? "block" : "none";
+const place=location.results[0];
+const url="https://api.open-meteo.com/v1/forecast?latitude="+place.latitude+"&longitude="+place.longitude+"&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m";
+const response=await fetch(url);
+if(!response.ok) throw Error();
+const data=await response.json();
+const w=data.current;
+const codes={
+0:"Clear Sky",1:"Mainly Clear",2:"Partly Cloudy",3:"Overcast",
+45:"Foggy",48:"Foggy",51:"Drizzle",61:"Rain",63:"Moderate Rain",
+65:"Heavy Rain",71:"Snow",80:"Rain Showers",95:"Thunderstorm"
+};
+output.textContent="";
+const title=document.createElement("h3");
+title.textContent=place.name+", "+(place.country||"");
+output.appendChild(title);
+[
+"🌡️ Temperature: "+w.temperature_2m+"°C",
+"🤗 Feels Like: "+w.apparent_temperature+"°C",
+"☁️ Weather: "+(codes[w.weather_code]||"Unknown"),
+"💧 Humidity: "+w.relative_humidity_2m+"%",
+"💨 Wind Speed: "+w.wind_speed_10m+" km/h"
+].forEach(line=>{
+const p=document.createElement("p");
+p.textContent=line;
+output.appendChild(p);
 });
-
-function goTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+}catch(error){
+output.textContent="Weather could not load. Check your internet and try again.";
 }
-// Login and Signup System
-
-function showAuth(type) {
-    document.getElementById("loginForm").classList.toggle("active", type === "login");
-    document.getElementById("signupForm").classList.toggle("active", type === "signup");
-    document.getElementById("authMessage").textContent = "";
 }
-
-function togglePassword(id) {
-    const field = document.getElementById(id);
-    field.type = field.type === "password" ? "text" : "password";
-}
-
-function getUsers() {
-    return JSON.parse(localStorage.getItem("abhinavUsers") || "[]");
-}
-
-document.getElementById("signupForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("signupName").value.trim();
-    const email = document.getElementById("signupEmail").value.trim().toLowerCase();
-    const password = document.getElementById("signupPassword").value;
-    const message = document.getElementById("authMessage");
-
-    const users = getUsers();
-
-    if (users.some(user => user.email === email)) {
-        message.textContent = "This email is already registered!";
-        return;
-    }
-
-    users.push({ name, email, password });
-    localStorage.setItem("abhinavUsers", JSON.stringify(users));
-
-    message.textContent = "Account created! Please login.";
-    document.getElementById("signupForm").reset();
-    showAuth("login");
+document.getElementById("city").addEventListener("keydown",e=>{
+if(e.key==="Enter") getWeather();
 });
-
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-    const password = document.getElementById("loginPassword").value;
-    const users = getUsers();
-
-    const user = users.find(
-        item => item.email === email && item.password === password
-    );
-
-    if (!user) {
-        document.getElementById("authMessage").textContent =
-            "Incorrect email or password!";
-        return;
-    }
-
-    sessionStorage.setItem("abhinavLoggedIn", JSON.stringify({
-        name: user.name,
-        email: user.email
-    }));
-
-    showDashboard();
-});
-
-function showDashboard() {
-    const user = JSON.parse(sessionStorage.getItem("abhinavLoggedIn"));
-
-    if (!user) return;
-
-    document.getElementById("authBox").style.display = "none";
-    document.getElementById("dashboard").classList.add("active");
-    document.getElementById("welcomeUser").textContent =
-        "Hello, " + user.name + "!";
-}
-<section id="account">
-    <div class="auth-container">
-        <h2>My Account 🔐</h2>
-
-        <div class="card" id="authBox">
-
-            <div class="auth-tabs">
-                <button onclick="showAuth('login')">Login</button>
-                <button onclick="showAuth('signup')">Sign Up</button>
-            </div>
-
-            <form id="loginForm" class="auth-form active">
-                <h3>Welcome Back!</h3>
-
-                <input type="email" id="loginEmail"
-                placeholder="Enter Email" required>
-
-                <div class="password-box">
-                    <input type="password" id="loginPassword"
-                    placeholder="Enter Password" required>
-
-                    <button type="button"
-                    onclick="togglePassword('loginPassword')">
-                    Show
-                    </button>
-                </div>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <form id="signupForm" class="auth-form">
-                <h3>Create Your Account</h3>
-
-                <input type="text" id="signupName"
-                placeholder="Full Name" required>
-
-                <input type="email" id="signupEmail"
-                placeholder="Email Address" required>
-
-                <div class="password-box">
-                    <input type="password" id="signupPassword"
-                    placeholder="Create Password"
-                    minlength="6" required>
-
-                    <button type="button"
-                    onclick="togglePassword('signupPassword')">
-                    Show
-                    </button>
-                </div>
-
-                <button type="submit">Create Account</button>
-            </form>
-
-            <p class="auth-message" id="authMessage"></p>
-        </div>
-
-        <div class="card dashboard" id="dashboard">
-            <h3>Welcome to Your Dashboard! 🎉</h3>
-            <p id="welcomeUser"></p>
-            <p>You are successfully logged in.</p>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </div>
-</section>
-function logout() {
-    sessionStorage.removeItem("abhinavLoggedIn");
-    document.getElementById("authBox").style.display = "block";
-    document.getElementById("dashboard").classList.remove("active");
-    document.getElementById("loginForm").reset();
-    showAuth("login");
-}
-
-showDashboard();
 </script>
 
 </body>
